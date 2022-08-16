@@ -1,26 +1,32 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
+
 import 'package:http/http.dart' as http;
-import 'package:ssl_app/model/documents.dart';
 import 'package:ssl_app/model/users.dart';
 
-class Service {
-  static const String url = 'https://jsonplaceholder.typicode.com/users';
-  static List<Users> _doc = [];
-  static Future<List<Users>> getDocuments() async {
+class FetchUserList {
+  var data = [];
+  List<Userlist> results = [];
+  String urlList = 'https://jsonplaceholder.typicode.com/users/';
+
+  Future<List<Userlist>> getuserList({String? query}) async {
+    var url = Uri.parse(urlList);
     try {
-      final response = await http.get(Uri.parse(url));
-
-      debugPrint(response.statusCode.toString());
-
-      if (200 == response.statusCode) {
-        final List<Users> docs = UsersFromJson(response.body);
-        return docs;
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        data = json.decode(response.body);
+        results = data.map((e) => Userlist.fromJson(e)).toList();
+        if (query != null) {
+          results = results
+              .where((element) =>
+                  element.name!.toLowerCase().contains((query.toLowerCase())))
+              .toList();
+        }
       } else {
-        return _doc;
+        print("fetch error");
       }
-    } catch (e) {
-      return _doc;
+    } on Exception catch (e) {
+      print('error: $e');
     }
+    return results;
   }
 }
