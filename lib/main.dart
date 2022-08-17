@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:ssl_app/utils/dependency_injection/dependency_injection.dart';
+import 'package:ssl_app/view/add_document.dart';
 import 'package:ssl_app/view/search_page.dart';
 
-import 'package:ssl_app/view/second_page.dart';
 import 'package:ssl_app/view/third_page.dart';
 
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+void main() async {
 
-void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  init();
+
   runApp(const MyApp());
 }
 
@@ -18,19 +20,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      localizationsDelegates: [
-        AppLocalizations.delegate, // Add this line
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: [
-        Locale('en', ''), // English, no country code
-        Locale('ar', ''), // Arabic, no country code
-      ],
-      title: 'SSL App',
+      title: 'APP Demo',
       theme: ThemeData(
-        primarySwatch: Colors.amber,
+        primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Awesome App'),
     );
@@ -51,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context).helloWorld),
+        title: Text(widget.title),
         foregroundColor: Colors.blueGrey,
       ),
       drawer: Drawer(
@@ -59,34 +51,29 @@ class _MyHomePageState extends State<MyHomePage> {
           color: Colors.lightBlue,
           child: ListView(
             children: [
-              new Container(
-                child: new DrawerHeader(
-                    child: new CircleAvatar(
-                        child: new Icon(Icons.home, size: 50))),
+              Container(
                 color: Colors.red,
+                child: const DrawerHeader(child: CircleAvatar(child: Icon(Icons.home, size: 50))),
               ),
               ListTile(
-                leading: Icon(Icons.search),
-                title: Text('Search Page'),
+                leading: const Icon(Icons.search),
+                title: const Text('Search Page'),
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => SearchPage()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => SearchPage()));
                 },
               ),
               ListTile(
-                leading: Icon(Icons.home),
-                title: Text('Add Document'),
+                leading: const Icon(Icons.home),
+                title: const Text('Add Document'),
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => SecondPage()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => AddDocument()));
                 },
               ),
               ListTile(
-                leading: Icon(Icons.home),
-                title: Text('Change Language'),
+                leading: const Icon(Icons.home),
+                title: const Text('Change Language'),
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => ThirdPage()));
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => ThirdPage()));
                 },
               ),
             ],
@@ -96,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[],
+          children: [],
         ),
       ),
     );

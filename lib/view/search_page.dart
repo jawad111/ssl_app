@@ -11,7 +11,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  FetchUserList _userList = FetchUserList();
+  RemoteDataSource _userList = RemoteDataSource();
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +99,7 @@ class _SearchPageState extends State<SearchPage> {
 }
 
 class SearchUser extends SearchDelegate {
-  FetchUserList _userList = FetchUserList();
+  RemoteDataSource _userList = RemoteDataSource();
 
   @override
   List<Widget> buildActions(BuildContext context) {
