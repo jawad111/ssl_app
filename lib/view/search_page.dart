@@ -19,7 +19,7 @@ class _SearchPageState extends State<SearchPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('UserList'),
+          title: Text('Documents'),
           actions: [
             IconButton(
               onPressed: () {
@@ -70,6 +70,7 @@ class _SearchPageState extends State<SearchPage> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
+                                        "Created By: "
                                         '${data?[index].createdBy}',
                                         style: TextStyle(
                                             fontSize: 18,
@@ -77,7 +78,28 @@ class _SearchPageState extends State<SearchPage> {
                                       ),
                                       SizedBox(height: 10),
                                       Text(
-                                        '${data?[index].subject}',
+                                        "Document ID: " +
+                                            '${data?[index].docTypeId}',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                      SizedBox(height: 10),
+                                      Text(
+                                        "Document Date: " +
+                                            '${data?[index].docDate}',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                      SizedBox(height: 10),
+                                      Text(
+                                        "Serial No: " +
+                                            '${data?[index].serial}',
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14,
@@ -163,13 +185,31 @@ class SearchUser extends SearchDelegate {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '${data?[index].createdBy}',
+                              "Created By: " + '${data?[index].createdBy}',
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.w600),
                             ),
                             SizedBox(height: 10),
                             Text(
-                              '${data?[index].subject}',
+                              "Document ID: " + '${data?[index].docTypeId}',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              "Document Date: " + '${data?[index].docDate}',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              "Serial No: " + '${data?[index].serial}',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 14,
@@ -187,7 +227,7 @@ class SearchUser extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     return Center(
-      child: Text('Search User'),
+      child: Text('Search Creator'),
     );
   }
 }
