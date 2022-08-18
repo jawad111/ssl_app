@@ -1,3 +1,26 @@
 {
-    "appTitle": "English"
+    "appTitle": "SSL App Demo",
+    "searchPage": "Search Page",
+    "addDocument": "Add Document",
+    "titleDocuments": "Documents",
+    "hintSearch": "Search",
+    "hintSearchMain": "Search Creator",
+    "createdBy": "Created By",
+    "DocumentId": "Document ID",
+    "Documentdate": "Document Date",
+    "serialNo": "Serial No",
+    "hintSubject": "Subject",
+    "hintDocumentType": "Document Type",
+    "hintDocumentTypeOut": "OutGoing",
+    "hintDocumentTypeIn": "Incoming",
+    "hintDocumentDate": "Document Date",
+    "hintSerialNo": "Serial Number",
+    "hintYear": "Year",
+    "saveButton": "Save",
+    "clearButton": "Clear",
+    "correctioSubject": "Enter a valid subject.",
+    "correctioType": "please select a valid value",
+    "correctioDate": "Invalid date",
+    "correctioSerial": "Invalid Serial Number",
+    "correctioYear": "Invalid Year."
 }

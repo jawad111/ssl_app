@@ -20,7 +20,8 @@ class AnimatedToggle extends StatefulWidget {
 }
 
 class _AnimatedToggleState extends State<AnimatedToggle> {
-  bool initialPosition = true;
+  bool initialPosition = false;
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,9 +33,11 @@ class _AnimatedToggleState extends State<AnimatedToggle> {
           GestureDetector(
             onTap: () {
               initialPosition = !initialPosition;
-              var index = 0;
               if (!initialPosition) {
                 index = 1;
+              }
+              if (initialPosition) {
+                index = 0;
               }
               widget.onToggleCallback(index);
               setState(() {});

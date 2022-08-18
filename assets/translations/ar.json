@@ -1,3 +1,26 @@
 {
-    "appTitle": "Arabic"
+    "appTitle": "نسخة تجريبية لتطبيق SSL",
+    "searchPage": "صفحة البحث",
+    "addDocument": "أضف وثيقة",
+    "titleDocuments": "وثائق",
+    "hintSearch": "يبحث",
+    "hintSearchMain": "البحث عن الخالق",
+    "createdBy": "انشأ من قبل",
+    "DocumentId": "معرف المستند",
+    "Documentdate": "تاريخ الوثيقة",
+    "serialNo": "رقم سري",
+    "hintSubject": "موضوعات",
+    "hintDocumentType": "نوع الوثيقة",
+    "hintDocumentTypeOut": "منفتح",
+    "hintDocumentTypeIn": "واردة",
+    "hintDocumentDate": "تاريخ الوثيقة",
+    "hintSerialNo": "رقم سري",
+    "hintYear": "سنة",
+    "saveButton": "يحفظ",
+    "clearButton": "صافي",
+    "correctioSubject": "أدخل موضوعًا صالحًا",
+    "correctioType": "الرجاء تحديد قيمة صالحة",
+    "correctioDate": "تاريخ غير صالح",
+    "correctioSerial": "الرقم التسلسلي غير صحيح",
+    "correctioYear": "عام غير صالح"
 }

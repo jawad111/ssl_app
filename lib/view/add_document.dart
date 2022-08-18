@@ -7,6 +7,11 @@ import 'package:ssl_app/utils/globals.dart';
 import 'package:ssl_app/view/providers/documents_provider.dart';
 import 'package:ssl_app/view/usecases/get_doc_type.dart';
 
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:ssl_app/translations/locale_keys.g.dart';
+import 'package:ssl_app/translations/codegen_loader.g.dart';
+
 typedef DocTypeMenuItem = DropdownMenuItem<DocTypeItem>;
 
 class AddDocument extends StatelessWidget {
@@ -63,7 +68,7 @@ class _AddDocumentContentState extends State<AddDocumentContent> {
     final provider = context.watch<DocumentProvider>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add Document'),
+        title: Text(LocaleKeys.addDocument.tr()),
         foregroundColor: Colors.white,
         backgroundColor: Colors.blueAccent,
       ),
@@ -85,11 +90,11 @@ class _AddDocumentContentState extends State<AddDocumentContent> {
                     const SizedBox(height: 20),
                   ],
                   CustomTextField(
-                    labelTexg: 'Subject',
+                    labelTexg: LocaleKeys.hintSubject.tr(),
                     controller: provider.subjectController,
                     validator: (val) {
                       if (val == null || val.isEmpty)
-                        return 'Enter a valid subject.';
+                        return LocaleKeys.correctioSubject.tr();
                       return null;
                     },
                     onChange: (val) {},
@@ -116,7 +121,7 @@ class _AddDocumentContentState extends State<AddDocumentContent> {
                       value: provider.selectedItem,
                       validator: (val) {
                         if (val == null || val.documentID == -1) {
-                          return 'please select a valid value';
+                          return LocaleKeys.correctioType.tr();
                         }
                         return null;
                       },
@@ -148,7 +153,8 @@ class _AddDocumentContentState extends State<AddDocumentContent> {
                           lastDate: provider.lastDate,
                         );
                       },
-                      validator: (date) => date == null ? 'Invalid date' : null,
+                      validator: (date) =>
+                          date == null ? LocaleKeys.correctioDate.tr() : null,
                       onChanged: (val) {
                         if (val == null) return;
                         provider.dateChanged(provider.format.format(val!));
@@ -165,14 +171,14 @@ class _AddDocumentContentState extends State<AddDocumentContent> {
                           child: CustomTextField(
                         validator: (val) {
                           if (val == null || val.isEmpty)
-                            return 'Invalid Serial Number';
+                            return LocaleKeys.correctioSerial.tr();
                           return null;
                         },
                         onChange: (val) {
                           provider.serialNumberEntered(val);
                         },
                         keyboardType: TextInputType.number,
-                        labelTexg: 'Serial Number',
+                        labelTexg: LocaleKeys.hintSerialNo.tr(),
                         controller: provider.serialNumberController,
                       )),
                       const Text(
@@ -183,14 +189,14 @@ class _AddDocumentContentState extends State<AddDocumentContent> {
                           child: CustomTextField(
                         validator: (val) {
                           if (val == null || val.isEmpty)
-                            return 'Invalid Year.';
+                            return LocaleKeys.correctioYear.tr();
                           return null;
                         },
                         onChange: (val) {
                           provider.yearEntered(val);
                         },
                         keyboardType: TextInputType.number,
-                        labelTexg: 'Year',
+                        labelTexg: LocaleKeys.hintYear.tr(),
                         controller: provider.yearController,
                       )),
                     ],
@@ -210,8 +216,8 @@ class _AddDocumentContentState extends State<AddDocumentContent> {
                                 color: Theme.of(context).primaryColor,
                                 borderRadius: BorderRadius.circular(8)),
                             alignment: Alignment.center,
-                            child: const Text(
-                              'Save',
+                            child: Text(
+                              LocaleKeys.saveButton.tr(),
                               style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.white,
@@ -236,7 +242,7 @@ class _AddDocumentContentState extends State<AddDocumentContent> {
                                     color: Theme.of(context).primaryColor)),
                             alignment: Alignment.center,
                             child: Text(
-                              'Clear',
+                              LocaleKeys.clearButton.tr(),
                               style: TextStyle(
                                 fontSize: 18,
                                 color: Theme.of(context).primaryColor,

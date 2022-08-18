@@ -22,7 +22,7 @@ class RoundedAppBar extends StatelessWidget implements PreferredSizeWidget {
                     color: Colors.orange,
                     shape: BoxShape.circle,
                     boxShadow: [
-                      new BoxShadow(color: Colors.black54, blurRadius: 10.0)
+                      new BoxShadow(color: Colors.black54, blurRadius: 20.0)
                     ],
                   ),
                 ),
@@ -35,5 +35,5 @@ class RoundedAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(200.0);
+  Size get preferredSize => const Size.fromHeight(250.0);
 }

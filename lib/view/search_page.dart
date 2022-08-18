@@ -6,6 +6,11 @@ import '../controller/service.dart';
 
 import 'package:flutter/material.dart';
 
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:ssl_app/translations/locale_keys.g.dart';
+import 'package:ssl_app/translations/codegen_loader.g.dart';
+
 class SearchPage extends StatefulWidget {
   @override
   _SearchPageState createState() => _SearchPageState();
@@ -19,7 +24,7 @@ class _SearchPageState extends State<SearchPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Documents'),
+          title: Text(LocaleKeys.titleDocuments.tr()),
           actions: [
             IconButton(
               onPressed: () {
@@ -51,7 +56,7 @@ class _SearchPageState extends State<SearchPage> {
                                   width: 60,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 124, 112, 69),
+                                    color: Color.fromARGB(255, 5, 197, 149),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Center(
@@ -70,15 +75,17 @@ class _SearchPageState extends State<SearchPage> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Created By: "
-                                        '${data?[index].createdBy}',
+                                        LocaleKeys.createdBy.tr() +
+                                            ": "
+                                                '${data?[index].createdBy}',
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w600),
                                       ),
                                       SizedBox(height: 10),
                                       Text(
-                                        "Document ID: " +
+                                        LocaleKeys.DocumentId.tr() +
+                                            ": " +
                                             '${data?[index].docTypeId}',
                                         style: TextStyle(
                                           color: Colors.black,
@@ -88,8 +95,13 @@ class _SearchPageState extends State<SearchPage> {
                                       ),
                                       SizedBox(height: 10),
                                       Text(
-                                        "Document Date: " +
-                                            '${data?[index].docDate}',
+                                        LocaleKeys.Documentdate.tr() +
+                                            ": " +
+                                            '${data?[index].docDate.year}' +
+                                            "-" +
+                                            '${data?[index].docDate.month}' +
+                                            "-" +
+                                            '${data?[index].docDate.day}',
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14,
@@ -98,7 +110,8 @@ class _SearchPageState extends State<SearchPage> {
                                       ),
                                       SizedBox(height: 10),
                                       Text(
-                                        "Serial No: " +
+                                        LocaleKeys.serialNo.tr() +
+                                            ": " +
                                             '${data?[index].serial}',
                                         style: TextStyle(
                                           color: Colors.black,
@@ -200,7 +213,12 @@ class SearchUser extends SearchDelegate {
                             ),
                             SizedBox(height: 10),
                             Text(
-                              "Document Date: " + '${data?[index].docDate}',
+                              "Document Date: " +
+                                  '${data?[index].docDate.year}' +
+                                  "-" +
+                                  '${data?[index].docDate.month}' +
+                                  "-" +
+                                  '${data?[index].docDate.day}',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 14,
@@ -227,7 +245,7 @@ class SearchUser extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     return Center(
-      child: Text('Search Creator'),
+      child: Text(LocaleKeys.hintSearchMain.tr()),
     );
   }
 }
