@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ssl_app/model/documents.dart';
 
 import '../model/users.dart';
 import '../controller/service.dart';
@@ -30,8 +31,8 @@ class _SearchPageState extends State<SearchPage> {
         ),
         body: Container(
           padding: EdgeInsets.all(20),
-          child: FutureBuilder<List<Userlist>>(
-              future: _userList.getuserList(),
+          child: FutureBuilder<List<Document>>(
+              future: _userList.getDocument(),
               builder: (context, snapshot) {
                 var data = snapshot.data;
                 return ListView.builder(
@@ -50,7 +51,7 @@ class _SearchPageState extends State<SearchPage> {
                                   width: 60,
                                   height: 60,
                                   decoration: BoxDecoration(
-                                    color: Colors.amberAccent,
+                                    color: Color.fromARGB(255, 124, 112, 69),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Center(
@@ -69,14 +70,14 @@ class _SearchPageState extends State<SearchPage> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        '${data?[index].name}',
+                                        '${data?[index].createdBy}',
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w600),
                                       ),
                                       SizedBox(height: 10),
                                       Text(
-                                        '${data?[index].email}',
+                                        '${data?[index].subject}',
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14,
@@ -124,15 +125,15 @@ class SearchUser extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    return FutureBuilder<List<Userlist>>(
-        future: _userList.getuserList(query: query),
+    return FutureBuilder<List<Document>>(
+        future: _userList.getDocument(query: query),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(
               child: CircularProgressIndicator(),
             );
           }
-          List<Userlist>? data = snapshot.data;
+          List<Document>? data = snapshot.data;
           return ListView.builder(
               itemCount: data?.length,
               itemBuilder: (context, index) {
@@ -162,13 +163,13 @@ class SearchUser extends SearchDelegate {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '${data?[index].name}',
+                              '${data?[index].createdBy}',
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.w600),
                             ),
                             SizedBox(height: 10),
                             Text(
-                              '${data?[index].email}',
+                              '${data?[index].subject}',
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 14,

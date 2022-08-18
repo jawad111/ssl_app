@@ -16,7 +16,8 @@ class AddDocument extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider.value(value: documentProvider, child: const AddDocumentContent());
+    return ChangeNotifierProvider.value(
+        value: documentProvider, child: const AddDocumentContent());
   }
 }
 
@@ -87,7 +88,8 @@ class _AddDocumentContentState extends State<AddDocumentContent> {
                     labelTexg: 'Subject',
                     controller: provider.subjectController,
                     validator: (val) {
-                      if (val == null || val.isEmpty) return 'Enter a valid subject.';
+                      if (val == null || val.isEmpty)
+                        return 'Enter a valid subject.';
                       return null;
                     },
                     onChange: (val) {},
@@ -95,8 +97,11 @@ class _AddDocumentContentState extends State<AddDocumentContent> {
                   const SizedBox(height: 20),
                   Container(
                     height: 65,
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                    decoration: BoxDecoration(color: Colors.grey.shade200, borderRadius: BorderRadius.circular(10)),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 10),
+                    decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(10)),
                     child: DropdownButtonFormField<DocTypeItem>(
                       items: _getDropDownMenuItem(provider.items),
                       onChanged: (item) {
@@ -120,8 +125,11 @@ class _AddDocumentContentState extends State<AddDocumentContent> {
                   const SizedBox(height: 20),
                   Container(
                     height: 65,
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                    decoration: BoxDecoration(color: Colors.grey.shade200, borderRadius: BorderRadius.circular(10)),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 10),
+                    decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(10)),
                     alignment: Alignment.center,
                     child: DateTimeField(
                       controller: provider.dateTimeFieldController,
@@ -142,7 +150,7 @@ class _AddDocumentContentState extends State<AddDocumentContent> {
                       },
                       validator: (date) => date == null ? 'Invalid date' : null,
                       onChanged: (val) {
-                        if(val == null) return;
+                        if (val == null) return;
                         provider.dateChanged(provider.format.format(val!));
                       },
                       resetIcon: null,
@@ -156,7 +164,8 @@ class _AddDocumentContentState extends State<AddDocumentContent> {
                       Expanded(
                           child: CustomTextField(
                         validator: (val) {
-                          if (val == null || val.isEmpty) return 'Invalid Serial Number';
+                          if (val == null || val.isEmpty)
+                            return 'Invalid Serial Number';
                           return null;
                         },
                         onChange: (val) {
@@ -173,7 +182,8 @@ class _AddDocumentContentState extends State<AddDocumentContent> {
                       Expanded(
                           child: CustomTextField(
                         validator: (val) {
-                          if (val == null || val.isEmpty) return 'Invalid Year.';
+                          if (val == null || val.isEmpty)
+                            return 'Invalid Year.';
                           return null;
                         },
                         onChange: (val) {
@@ -196,7 +206,9 @@ class _AddDocumentContentState extends State<AddDocumentContent> {
                           child: Container(
                             height: 65,
                             width: double.infinity,
-                            decoration: BoxDecoration(color: Theme.of(context).primaryColor, borderRadius: BorderRadius.circular(8)),
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).primaryColor,
+                                borderRadius: BorderRadius.circular(8)),
                             alignment: Alignment.center,
                             child: const Text(
                               'Save',
@@ -218,7 +230,10 @@ class _AddDocumentContentState extends State<AddDocumentContent> {
                           child: Container(
                             height: 65,
                             width: double.infinity,
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), border: Border.all(color: Theme.of(context).primaryColor)),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(
+                                    color: Theme.of(context).primaryColor)),
                             alignment: Alignment.center,
                             child: Text(
                               'Clear',
@@ -271,7 +286,8 @@ class CustomTextField extends StatelessWidget {
     return Container(
       height: 60,
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      decoration: BoxDecoration(color: Colors.grey.shade200, borderRadius: BorderRadius.circular(10)),
+      decoration: BoxDecoration(
+          color: Colors.grey.shade200, borderRadius: BorderRadius.circular(10)),
       child: TextFormField(
         controller: controller,
         onChanged: onChange,

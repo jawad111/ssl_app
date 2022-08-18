@@ -4,27 +4,28 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:ssl_app/model/users.dart';
+import 'package:ssl_app/model/documents.dart';
 import 'package:ssl_app/utils/failures.dart';
 import 'package:ssl_app/view/usecases/create_document.dart';
 import 'package:ssl_app/view/usecases/get_doc_type.dart';
 
 class RemoteDataSource {
   var data = [];
-  List<Userlist> results = [];
-  String urlList = 'https://jsonplaceholder.typicode.com/users/';
+  List<Document> results = [];
+  String urlList = 'https://jawadtestapi.herokuapp.com/Docs';
 
-  Future<List<Userlist>> getuserList({String? query}) async {
+  Future<List<Document>> getDocument({String? query}) async {
     var url = Uri.parse(urlList);
     try {
       var response = await http.get(url);
       if (response.statusCode == 200) {
         data = json.decode(response.body);
-        results = data.map((e) => Userlist.fromJson(e)).toList();
+        results = data.map((e) => Document.fromJson(e)).toList();
         if (query != null) {
           results = results
-              .where((element) =>
-                  element.name!.toLowerCase().contains((query.toLowerCase())))
+              .where((element) => element.createdBy!
+                  .toLowerCase()
+                  .contains((query.toLowerCase())))
               .toList();
         }
       } else {
@@ -59,10 +60,14 @@ class RemoteDataSource {
 
   Future<Either<Failure, bool>> createDocument(
       CreateDocumentParams param) async {
-    const url = "http://84.242.34.7/MobileAPItask/api/Docs/CreateDoc";
+    const url = "https://jawadtestapi.herokuapp.com/Docs";
 
     try {
-      final response = await http.post(Uri.parse(url), body: jsonEncode(param));
+      final response = await http.post(Uri.parse(url),
+          headers: {
+            HttpHeaders.contentTypeHeader: "application/json",
+          },
+          body: jsonEncode(param.toJson()));
 
       if (response.statusCode == 200 && response.body.isNotEmpty) {
         return right(true);
